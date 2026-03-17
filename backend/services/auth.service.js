@@ -66,7 +66,7 @@ export const authServices = {
     try {
       const user = await User.findOne({ email });
       if (!user) throw new Error("Bad request");
-      const resetPasswordToken = crypto.randomBytes(10).toString("HEX");
+      const resetPasswordToken = crypto.randomBytes(20).toString("HEX");
       user.resetPasswordToken = resetPasswordToken;
       user.resetPasswordExpiresAt = Date.now() + 1 * 60 * 60 * 1000;
       await user.save();

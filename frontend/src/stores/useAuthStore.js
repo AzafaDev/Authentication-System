@@ -2,7 +2,10 @@ import axios from "axios";
 import { create } from "zustand";
 import toast from "react-hot-toast";
 
-const BASE_URL = "http://localhost:5000/api/auth";
+const BASE_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:5000/api/auth"
+    : "/api/auth";
 
 axios.defaults.withCredentials = true;
 

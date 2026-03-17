@@ -4,13 +4,14 @@ import { useAuthStore } from "../stores/useAuthStore";
 import Input from "../components/Input";
 import { Lock } from "lucide-react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
 
 const ResetPasswordPage = () => {
   const { error, message, isLoading, resetPassword } = useAuthStore();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
   const { token } = useParams();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ const ResetPasswordPage = () => {
         return;
       }
       await resetPassword(token, password);
+      navigate("/");
     } catch (error) {
       toast.error("Something went wrong");
       console.error(error);

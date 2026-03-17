@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children }) => {
   if (!isAuthenticated) {
     return <Navigate to={"/login"} replace />;
   }
-  if (!user.isVerified) {
+  if (!user?.isVerified) {
     return <Navigate to={"/verify-email"} replace />;
   }
   return children;
@@ -25,7 +25,7 @@ const ProtectedRoute = ({ children }) => {
 const RedirectAuthenticatedUser = ({ children }) => {
   const { isAuthenticated, user } = useAuthStore();
 
-  if (isAuthenticated && user.isVerified) {
+  if (isAuthenticated && user?.isVerified) {
     return <Navigate to={"/"} replace />;
   }
 

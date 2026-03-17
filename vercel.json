@@ -2,7 +2,7 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/auth/:path*",
       "destination": "/backend/server.js"
     },
     {
